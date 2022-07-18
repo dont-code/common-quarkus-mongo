@@ -42,8 +42,14 @@ jobs:
         # Test run screenshots only on failure
         if: success()
         with:
-          name: ide-services-runner.jar
-          path: target/ide-services-runner.jar
+          name: quarkus-mongo.jar
+          path: quarkus-mongo/target/quarkus-mongo.jar
+      - uses: actions/upload-artifact@v2
+        # Test run screenshots only on failure
+        if: success()
+        with:
+          name: quarkus-mongo-test.jar
+          path: quarkus-mongo-test/target/quarkus-mongo-test.jar
       - name: Push
         run: |
           git commit -a -m "New release" --allow-empty

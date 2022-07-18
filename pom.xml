@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.dontcode.common</groupId>
   <artifactId>parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.2.0</version>
   <packaging>pom</packaging>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -21,7 +21,7 @@
     <quarkus.platform.version>2.10.2.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <dontcode-core.version>0.2.0-SNAPSHOT</dontcode-core.version>
+    <dontcode-core.version>0.2.0</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -49,6 +49,7 @@
     </dependencies>
   </dependencyManagement>
   <build>
+    <finalName>${project.artifactId}</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -172,8 +173,8 @@
   </modules>
   <licenses>
     <license>
-      <name>MIT License</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <name>AGPL-3.0 License</name>
+      <url>https://opensource.org/licenses/AGPL-3.0</url>
     </license>
   </licenses>
   <developers>

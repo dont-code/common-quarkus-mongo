@@ -3,7 +3,6 @@ package net.dontcode.common.mongo;
 import com.mongodb.MongoClientSettings;
 import net.dontcode.core.Change;
 import net.dontcode.core.DontCodeModelPointer;
-import org.bson.BSONObject;
 import org.bson.BsonReader;
 import org.bson.BsonWriter;
 import org.bson.Document;
@@ -40,14 +39,29 @@ public class ChangeCodec implements Codec<Change> {
             chg.setType(Change.ChangeType.valueOf(document.getString("type")));
         }
         if (document.get("pointer") != null) {
+                // Supports loading old version of DontCodeModelPointer together with new version
             Document ptr = (Document) document.get("pointer");
             DontCodeModelPointer pointer = new DontCodeModelPointer();
             pointer.setPosition((String) ptr.get("position"));
-            pointer.setSchemaPosition((String) ptr.get("schemaPosition"));
+            pointer.setPositionInSchema((String) ptr.get("schemaPosition"));
+            if (ptr.containsKey("positionInSchema"))
+                pointer.setPositionInSchema((String)ptr.get("positionInSchema"));
             pointer.setContainerPosition((String) ptr.get("containerPosition"));
-            pointer.setContainerSchemaPosition((String) ptr.get("containerSchemaPosition"));
-            pointer.setItemId((String) ptr.get("itemId"));
-            pointer.setKey((String) ptr.get("key"));
+            pointer.setContainerPositionInSchema((String) ptr.get("containerSchemaPosition"));
+            if (ptr.containsKey("containerPositionInSchema"))
+                pointer.setContainerPositionInSchema((String)ptr.get("containerPositionInSchema"));
+            if (ptr.containsKey("itemId")) {
+                pointer.setLastElement((String) ptr.get("itemId"));
+                pointer.setIsProperty(Boolean.FALSE);
+            }
+            if (ptr.containsKey("key")) {
+                pointer.setLastElement((String) ptr.get("key"));
+                pointer.setIsProperty(Boolean.TRUE);
+            }
+            if (ptr.containsKey("lastElement"))
+                pointer.setLastElement((String) ptr.get("lastElement"));
+            if( ptr.containsKey("isProperty"))
+                pointer.setIsProperty((Boolean) ptr.get("isProperty"));
             chg.setPointer(pointer);
         }
 
@@ -71,14 +85,14 @@ public class ChangeCodec implements Codec<Change> {
             DontCodeModelPointer pointer = chg.getPointer();
             Document ptr = new Document();
             ptr.put("position", pointer.getPosition());
-            ptr.put("schemaPosition", pointer.getSchemaPosition());
+            ptr.put("positionInSchema", pointer.getPositionInSchema());
             ptr.put("containerPosition", pointer.getContainerPosition());
-            ptr.put("schemaContainerPosition", pointer.getContainerSchemaPosition());
-            if( pointer.getItemId()!=null) {
-                ptr.put("itemId", pointer.getItemId());
+            ptr.put("containerPositionInSchema", pointer.getContainerPositionInSchema());
+            if( pointer.getLastElement()!=null) {
+                ptr.put("lastElement", pointer.getLastElement());
             }
-            if( pointer.getKey()!=null) {
-                ptr.put("key", pointer.getKey());
+            if( pointer.getIsProperty()!=null) {
+                ptr.put("isProperty", pointer.getIsProperty());
             }
             doc.put("pointer", ptr);
         }

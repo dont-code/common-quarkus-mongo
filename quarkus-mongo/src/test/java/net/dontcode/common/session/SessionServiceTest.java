@@ -51,7 +51,7 @@ public class SessionServiceTest extends AbstractMongoTest {
                         }]
                 }
                 """).toBsonDocument();
-        var pointer = new DontCodeModelPointer("creation/entities/a", "creation/entities","creation", "creation", null, "a");
+        var pointer = new DontCodeModelPointer("creation/entities/a", "creation/entities","creation", "creation", "a", Boolean.TRUE);
         chg = new Change(Change.ChangeType.UPDATE, pointer.getPosition(), value, pointer);
         sessionService.updateSession(sessionId, chg).await().indefinitely();
 
@@ -110,7 +110,7 @@ public class SessionServiceTest extends AbstractMongoTest {
                         }]
                 }
                 """).toBsonDocument();
-        var pointer = new DontCodeModelPointer("creation/entities/b", "creation/entities","creation", "creation", null, "b");
+        var pointer = new DontCodeModelPointer("creation/entities/b", "creation/entities","creation", "creation", "b", Boolean.TRUE);
         chg = new Change(Change.ChangeType.UPDATE, pointer.getPosition(), value, pointer);
         sessionService.updateSession(sessionId, chg).await().indefinitely();
     }
