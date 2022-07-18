@@ -21,7 +21,7 @@
     <quarkus.platform.version>2.10.2.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <dontcode-core.version>0.2.0-SNAPSHOT</dontcode-core.version>
+    <dontcode-core.version>0.2.0</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>
