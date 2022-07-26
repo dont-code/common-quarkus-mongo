@@ -6,6 +6,8 @@ import net.dontcode.common.test.mongo.AbstractMongoTest;
 import net.dontcode.common.test.mongo.MongoTestProfile;
 import net.dontcode.core.Change;
 import net.dontcode.core.DontCodeModelPointer;
+import net.dontcode.core.MapOrString;
+import net.dontcode.core.Models;
 import org.bson.json.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -78,7 +80,7 @@ public class SessionServiceTest extends AbstractMongoTest {
     }
 
     @Test
-    public void testListSessionOverview() throws InterruptedException {
+    public void isCorrectlyLoadingListSessionOverview() throws InterruptedException {
             // Create a first batch of session
         ZonedDateTime firstBatchTime = ZonedDateTime.now();
         createDummySession();
@@ -91,6 +93,16 @@ public class SessionServiceTest extends AbstractMongoTest {
 
         var testSessions = sessionService.listSessionOverview(firstBatchTime, secondBatchTime, null).collect().asList().await().indefinitely();
         Assertions.assertEquals(1, testSessions.size());
+    }
+
+    @Test
+    public void isCorrectlyLoadingSessionDetail() throws InterruptedException {
+        String sessionID = createComplexSession(4);
+
+        var session = sessionService.getSession(sessionID).await().indefinitely();
+        Assertions.assertEquals(4+3, session.elementsCount());
+
+        Assertions.assertEquals(4, Models.findAtPosition(MapOrString.fromObject(session.content()), "creation/entities", false ).getMap().size());
     }
 
     private void createDummySession() {
@@ -115,4 +127,32 @@ public class SessionServiceTest extends AbstractMongoTest {
         sessionService.updateSession(sessionId, chg).await().indefinitely();
     }
 
-}
+    private String createComplexSession(int elementCount) {
+        var sessionId = UUID.randomUUID().toString();
+        sessionService.createNewSession(sessionId, "Test Get Sessions for " + sessionId).await().indefinitely();
+        sessionService.findSessionCreationEvent(sessionId).await().indefinitely();
+        Change chg = new Change(Change.ChangeType.ADD, "creation/name", "SessionAppName");
+        sessionService.updateSession(sessionId, chg).await().indefinitely();
+
+        for (int i=0;i<elementCount;i++) {
+            var value = new JsonObject("""
+                    {
+                        "name":"EntityName"""+i+"""
+                        ",
+                        "fields": [{
+                            "name":"FieldA"""+i+"""
+                            ",
+                            "type":"string"
+                            }]
+                    }
+                    """).toBsonDocument();
+
+            var pointer = new DontCodeModelPointer("creation/entities/a"+i, "creation/entities", "creation", "creation", "a"+i, Boolean.TRUE);
+            chg = new Change(Change.ChangeType.UPDATE, pointer.getPosition(), value, pointer);
+            sessionService.updateSession(sessionId, chg).await().indefinitely();
+        }
+        sessionService.updateSessionStatus(sessionId,SessionActionType.CLOSE).await().indefinitely();
+
+        return sessionId;
+        }
+    }

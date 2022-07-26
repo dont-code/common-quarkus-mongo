@@ -10,6 +10,8 @@ import io.quarkus.mongodb.reactive.ReactiveMongoDatabase;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import net.dontcode.core.Change;
+import net.dontcode.core.MapOrString;
+import net.dontcode.core.Models;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -22,6 +24,8 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.mongodb.client.model.Filters.and;
 import static com.mongodb.client.model.Filters.eq;
@@ -82,24 +86,24 @@ public class SessionService {
      * @return
      */
     public Uni<SessionDetail> getSession (String id) {
-        HashMap<String, Object> stackedContent = new HashMap<>();
+        Map<String, MapOrString> stackedContent = new LinkedHashMap<>();
         SessionDetail[] stackedDetail = {null};
         return listSessionsInOrder(id).onItem().transform(session -> {
-            //mergeChange (stackedContent, session.change());
-            if( stackedDetail[0]==null) {
-                stackedDetail[0]=new SessionDetail(id, session.time(),null, session.srcInfo().equals("demo"),1, stackedContent);
+            mergeChange(stackedContent, session.change());
+            if (stackedDetail[0] == null) {
+                stackedDetail[0] = new SessionDetail(id, session.time(), null, session.srcInfo().equals("demo"), 1, stackedContent);
             } else {
                 SessionDetail oldDessionDetail = stackedDetail[0];
-                stackedDetail[0]=new SessionDetail(id, oldDessionDetail.startTime(), session.time(), oldDessionDetail.isDemo(),
-                        oldDessionDetail.elementsCount()+1, stackedContent);
+                stackedDetail[0] = new SessionDetail(id, oldDessionDetail.startTime(), session.time(), oldDessionDetail.isDemo(),
+                        oldDessionDetail.elementsCount() + 1, stackedContent);
             }
             return stackedDetail[0];
         }).collect().last();
     }
 
-    /*public mergeChange (HashMap<String, Object> content, Change toMerge) {
-
-    }*/
+    public void mergeChange (Map<String, MapOrString> content, Change toMerge) {
+        Models.applyChange(content, toMerge);
+    }
 
     /**
      * Pipeline query:
