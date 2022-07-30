@@ -5,7 +5,7 @@
   <groupId>net.dontcode.common</groupId>
   <artifactId>parent</artifactId>
   <name>Dont-code Quarkus Mongo</name>
-  <version>0.2.2</version>
+  <version>0.2.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
@@ -22,7 +22,7 @@
     <quarkus.platform.version>2.10.2.Final</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
-    <dontcode-core.version>0.2.1</dontcode-core.version>
+    <dontcode-core.version>0.2.2-SNAPSHOT</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>

@@ -6,7 +6,7 @@
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
-    <version>0.2.2</version>
+    <version>0.2.3-SNAPSHOT</version>
   </parent>
   <properties>
   </properties>

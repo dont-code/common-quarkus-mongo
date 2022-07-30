@@ -86,7 +86,7 @@ public class SessionService {
      * @return
      */
     public Uni<SessionDetail> getSession (String id) {
-        Map<String, MapOrString> stackedContent = new LinkedHashMap<>();
+        Map<String, Object> stackedContent = new LinkedHashMap<>();
         SessionDetail[] stackedDetail = {null};
         return listSessionsInOrder(id).onItem().transform(session -> {
             mergeChange(stackedContent, session.change());
@@ -98,10 +98,17 @@ public class SessionService {
                         oldDessionDetail.elementsCount() + 1, stackedContent);
             }
             return stackedDetail[0];
-        }).collect().last();
+        }).collect().last().map(sessionDetail -> {
+            if(sessionDetail.content() instanceof Map<?,?>) {
+                return new SessionDetail(sessionDetail.id(), sessionDetail.startTime(), sessionDetail.endTime(), sessionDetail.isDemo(),
+                        sessionDetail.elementsCount(), sessionDetail.content());
+            }else {
+                return sessionDetail;
+            }
+        });
     }
 
-    public void mergeChange (Map<String, MapOrString> content, Change toMerge) {
+    public void mergeChange (Map<String, Object> content, Change toMerge) {
         Models.applyChange(content, toMerge);
     }
 
