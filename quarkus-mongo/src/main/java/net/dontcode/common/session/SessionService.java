@@ -10,7 +10,6 @@ import io.quarkus.mongodb.reactive.ReactiveMongoDatabase;
 import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import net.dontcode.core.Change;
-import net.dontcode.core.MapOrString;
 import net.dontcode.core.Models;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -23,7 +22,6 @@ import javax.inject.Inject;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -229,6 +227,7 @@ public class SessionService {
     }
 
     protected ReactiveMongoDatabase getDatabase () {
+        log.debug("Database = "+projectDbName);
         return mongoClient.getDatabase(projectDbName);
     }
 }
