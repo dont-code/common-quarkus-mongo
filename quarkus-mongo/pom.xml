@@ -6,7 +6,7 @@
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.3-SNAPSHOT</version>
   </parent>
   <properties>
   </properties>
@@ -65,6 +65,18 @@
       <groupId>net.dontcode.common</groupId>
       <artifactId>quarkus-mongo-test</artifactId>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>net.dontcode</groupId>
+      <artifactId>core</artifactId>
+    </dependency>
+      <dependency>
+          <groupId>net.dontcode</groupId>
+          <artifactId>core</artifactId>
+      </dependency>
+    <dependency>
+      <groupId>net.dontcode</groupId>
+      <artifactId>core</artifactId>
     </dependency>
     <dependency>
       <groupId>net.dontcode</groupId>

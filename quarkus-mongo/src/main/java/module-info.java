@@ -10,6 +10,7 @@ module net.dontcode.common.quarkus.mongo {
     requires java.xml.bind;
     requires jakarta.websocket.api;
     requires quarkus.mongodb.client;
+    requires quarkus.jackson;
     requires org.mongodb.bson;
     requires org.mongodb.driver.core;
     requires io.smallrye.mutiny;
