@@ -70,18 +70,6 @@
       <groupId>net.dontcode</groupId>
       <artifactId>core</artifactId>
     </dependency>
-      <dependency>
-          <groupId>net.dontcode</groupId>
-          <artifactId>core</artifactId>
-      </dependency>
-    <dependency>
-      <groupId>net.dontcode</groupId>
-      <artifactId>core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>net.dontcode</groupId>
-      <artifactId>core</artifactId>
-    </dependency>
   </dependencies>
   <build>
     <plugins>
