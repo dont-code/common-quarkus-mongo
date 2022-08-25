@@ -31,11 +31,6 @@ jobs:
         with:
           path: .m2/repository # maven repository files are stored here
           key: ${{ runner.OS }}-maven-${{ hashFiles('pom.xml') }}
-      - name: Install
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email noreply@github.com
-          git merge origin/Development
       - name: Build
         run: mvn -B package --file pom.xml
       - uses: actions/upload-artifact@v2
@@ -50,7 +45,3 @@ jobs:
         with:
           name: quarkus-mongo-test.jar
           path: quarkus-mongo-test/target/quarkus-mongo-test.jar
-      - name: Push
-        run: |
-          git commit -a -m "New release" --allow-empty
-          git push

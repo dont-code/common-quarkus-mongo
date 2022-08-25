@@ -65,6 +65,14 @@ public class ChangeCodec implements Codec<Change> {
             chg.setPointer(pointer);
         }
 
+        var forMove = document.getString("oldPosition");
+        if( forMove!=null) {
+            chg.setOldPosition(forMove);
+        }
+        forMove = document.getString("beforeKey");
+        if( forMove!=null) {
+            chg.setBeforeKey(forMove);
+        }
         var value = document.get("value");
         if( value instanceof String) {
             chg.setValue(value);
@@ -95,6 +103,13 @@ public class ChangeCodec implements Codec<Change> {
                 ptr.put("isProperty", pointer.getIsProperty());
             }
             doc.put("pointer", ptr);
+        }
+
+        if (chg.getOldPosition()!=null) {
+            doc.put("oldPosition", chg.getOldPosition());
+        }
+        if (chg.getBeforeKey()!=null) {
+            doc.put("beforeKey", chg.getBeforeKey());
         }
 
         if( (chg.getValue()!=null)) {

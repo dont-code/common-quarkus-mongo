@@ -96,6 +96,44 @@ public class SessionServiceTest extends AbstractMongoTest {
     }
 
     @Test
+    public void testMoveChangeIsSavedProperly() {
+        var sessionId = UUID.randomUUID().toString();
+        var createdSession = sessionService.createNewSession(sessionId, "Test Move Change for "+sessionId).await().indefinitely();
+        Assertions.assertEquals(createdSession.id(), sessionId);
+        Assertions.assertEquals(createdSession.type(), SessionActionType.CREATE);
+        Assertions.assertNotNull(createdSession.time());
+
+        var savedSession = sessionService.findSessionCreationEvent(sessionId).await().indefinitely();
+        Assertions.assertNotNull(savedSession.time());
+
+        var value = new JsonObject ("""
+                {
+                    "name":"EntityName",
+                    "fields": {
+                        "aa":{
+                            "name":"FieldA",
+                            "type":"string"
+                            }
+                        }
+                }
+                """).toBsonDocument();
+        var pointer = new DontCodeModelPointer("creation/entities/a", "creation/entities","creation", "creation", "a", Boolean.TRUE);
+        Change chg = new Change(Change.ChangeType.UPDATE, pointer.getPosition(), value, pointer);
+        sessionService.updateSession(sessionId, chg).await().indefinitely();
+
+        pointer = new DontCodeModelPointer("creation/entities/b", "creation/entities","creation", "creation", "b", Boolean.TRUE);
+        chg = new Change(Change.ChangeType.MOVE, pointer.getPosition(), null, pointer, "creation/entities/a", null);
+        sessionService.updateSession(sessionId, chg).await().indefinitely();
+
+        sessionService.updateSessionStatus(sessionId, SessionActionType.CLOSE).await().indefinitely();
+        SessionDetail loaded =sessionService.getSession(sessionId).await().indefinitely();
+
+        Assertions.assertNull(Models.findAtPosition((Map<String, Object>) loaded.content(), "creation/entities/a", false));
+        Assertions.assertEquals("FieldA", Models.findAtPosition(new MapOrString((Map<String, Object>) loaded.content()), "creation/entities/b/fields/aa/name", false).getString() );
+
+    }
+
+    @Test
     public void isCorrectlyLoadingSessionDetail() throws InterruptedException {
         String sessionID = createComplexSession(4);
 
