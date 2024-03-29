@@ -49,7 +49,7 @@ public class SessionService {
     }
 
     public Uni<Session> findSessionCreationEvent (String id) {
-        log.debug("Querying for {}", id);
+//        log.debug("Querying for {}", id);
         return getSession().find(and(Filters.eq("id", id), Filters.eq( "type",SessionActionType.CREATE.name()))).toUni();
     }
 

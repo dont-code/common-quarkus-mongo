@@ -26,7 +26,6 @@ public class MessageEncoderDecoder implements Decoder.Text<Message>, Encoder.Tex
 
     @Override
     public void init(EndpointConfig config) {
-
     }
 
     @Override
