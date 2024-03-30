@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.dontcode.core.Message;
 
-import javax.websocket.*;
+import jakarta.websocket.*;
 
 public class MessageEncoderDecoder implements Decoder.Text<Message>, Encoder.Text<Message> {
     @Override
@@ -26,7 +26,6 @@ public class MessageEncoderDecoder implements Decoder.Text<Message>, Encoder.Tex
 
     @Override
     public void init(EndpointConfig config) {
-
     }
 
     @Override

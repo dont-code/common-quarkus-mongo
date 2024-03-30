@@ -6,7 +6,7 @@
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
-    <version>0.2.3-SNAPSHOT</version>
+    <version>0.3.0</version>
   </parent>
   <properties>
   </properties>
@@ -24,11 +24,11 @@
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-reactive-jsonb</artifactId>
+      <artifactId>quarkus-rest-jsonb</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
+      <artifactId>quarkus-rest-jackson</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -36,20 +36,11 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-resteasy-reactive</artifactId>
+      <artifactId>quarkus-websockets</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-websockets</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.xml.bind</groupId>
-      <artifactId>jakarta.xml.bind-api</artifactId>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -59,11 +50,6 @@
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.dontcode.common</groupId>
-      <artifactId>quarkus-mongo-test</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -95,8 +81,7 @@
         <artifactId>maven-source-plugin</artifactId>
       </plugin>
       <plugin>
-        <!-- https://github.com/wildfly/jandex-maven-plugin -->
-        <groupId>org.jboss.jandex</groupId>
+        <groupId>io.smallrye</groupId>
         <artifactId>jandex-maven-plugin</artifactId>
       </plugin>
     </plugins>

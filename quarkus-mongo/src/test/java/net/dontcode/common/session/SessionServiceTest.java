@@ -1,9 +1,7 @@
 package net.dontcode.common.session;
 
 import io.quarkus.test.junit.QuarkusTest;
-import io.quarkus.test.junit.TestProfile;
-import net.dontcode.common.test.mongo.AbstractMongoTest;
-import net.dontcode.common.test.mongo.MongoTestProfile;
+import jakarta.inject.Inject;
 import net.dontcode.core.Change;
 import net.dontcode.core.DontCodeModelPointer;
 import net.dontcode.core.MapOrString;
@@ -12,7 +10,6 @@ import org.bson.json.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import javax.inject.Inject;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -21,8 +18,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 @QuarkusTest
-@TestProfile(MongoTestProfile.class)
-public class SessionServiceTest extends AbstractMongoTest {
+public class SessionServiceTest {
 
 
     @Inject
