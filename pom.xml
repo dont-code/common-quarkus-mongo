@@ -5,14 +5,14 @@
   <groupId>net.dontcode.common</groupId>
   <artifactId>parent</artifactId>
   <name>Dont-code Quarkus Mongo</name>
-  <version>0.3.0</version>
+  <version>0.3.1</version>
   <packaging>pom</packaging>
   <properties>
     <compiler-plugin.version>3.12.1</compiler-plugin.version>
     <source-plugin.version>3.2.1</source-plugin.version>
     <javadoc-plugin.version>3.3.0</javadoc-plugin.version>
     <gpg-plugin.version>3.2.1</gpg-plugin.version>
-    <maven.compiler.release>21</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <jandex-plugin.version>3.1.7</jandex-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -21,7 +21,7 @@
     <quarkus.platform.version>3.9.1</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
-    <dontcode-core.version>0.3.0</dontcode-core.version>
+    <dontcode-core.version>0.3.1</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>
