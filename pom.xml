@@ -5,23 +5,23 @@
   <groupId>net.dontcode.common</groupId>
   <artifactId>parent</artifactId>
   <name>Dont-code Quarkus Mongo</name>
-  <version>0.3.1</version>
+  <version>0.4.0</version>
   <packaging>pom</packaging>
   <properties>
-    <compiler-plugin.version>3.12.1</compiler-plugin.version>
-    <source-plugin.version>3.2.1</source-plugin.version>
-    <javadoc-plugin.version>3.3.0</javadoc-plugin.version>
+    <compiler-plugin.version>3.14.1</compiler-plugin.version>
+    <source-plugin.version>3.3.0</source-plugin.version>
+    <javadoc-plugin.version>3.6.3</javadoc-plugin.version>
     <gpg-plugin.version>3.2.1</gpg-plugin.version>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
     <jandex-plugin.version>3.1.7</jandex-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>3.9.1</quarkus.platform.version>
+    <quarkus.platform.version>3.31.4</quarkus.platform.version>
     <skipITs>true</skipITs>
-    <surefire-plugin.version>3.2.5</surefire-plugin.version>
-    <dontcode-core.version>0.3.1</dontcode-core.version>
+    <surefire-plugin.version>3.5.4</surefire-plugin.version>
+    <dontcode-core.version>0.4.0</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -120,7 +120,7 @@
         <plugin>
           <groupId>io.smallrye</groupId>
           <artifactId>jandex-maven-plugin</artifactId>
-          <version>3.1.7</version>
+          <version>${jandex-plugin.version}</version>
           <executions>
             <execution>
               <id>make-index</id>
