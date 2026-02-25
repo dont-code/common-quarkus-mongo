@@ -3,6 +3,9 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>quarkus-mongo</artifactId>
+  <name>Dont-code Quarkus Mongo</name>
+  <description>Quarkus - Mongo support to Dont-code.</description>
+  <url>https://dont-code.net</url>
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
@@ -83,6 +86,14 @@
       <plugin>
         <groupId>io.smallrye</groupId>
         <artifactId>jandex-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
