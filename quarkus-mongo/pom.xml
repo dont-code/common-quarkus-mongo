@@ -9,7 +9,7 @@
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1-SNAPSHOT</version>
   </parent>
   <properties>
   </properties>
@@ -47,7 +47,7 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-junit5</artifactId>
+      <artifactId>quarkus-junit</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -102,14 +102,4 @@
     <developerConnection>scm:git:ssh://github.com/dont-code/common-quarkus-mongo.git</developerConnection>
     <url>https://github.com/dont-code/common-quarkus-mongo/quarkus-mongo</url>
   </scm>
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/releases</url>
-    </repository>
-  </distributionManagement>
 </project>
