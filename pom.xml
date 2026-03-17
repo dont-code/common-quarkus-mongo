@@ -7,7 +7,7 @@
   <name>Dont-code Quarkus Mongo Parent</name>
   <description>Parent pom for Quarkus - Mongo support to Dont-code.</description>
   <url>https://dont-code.net</url>
-  <version>0.4.2</version>
+  <version>0.4.3-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <compiler-plugin.version>3.14.1</compiler-plugin.version>
@@ -24,7 +24,7 @@
     <quarkus.platform.version>3.31.4</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.4</surefire-plugin.version>
-    <dontcode-core.version>0.4.2</dontcode-core.version>
+    <dontcode-core.version>0.4.3-SNAPSHOT</dontcode-core.version>
   </properties>
   <dependencyManagement>
     <dependencies>
