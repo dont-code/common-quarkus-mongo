@@ -9,7 +9,7 @@
   <parent>
     <groupId>net.dontcode.common</groupId>
     <artifactId>parent</artifactId>
-    <version>0.4.3-SNAPSHOT</version>
+    <version>0.4.5-SNAPSHOT</version>
   </parent>
   <properties>
   </properties>
@@ -79,7 +79,7 @@
         <artifactId>maven-gpg-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.central</groupId>
+        <groupId>io.github.mavenplugins</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
       </plugin>
     </plugins>
