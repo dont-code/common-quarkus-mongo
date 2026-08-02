@@ -43,7 +43,7 @@
         <artifactId>maven-gpg-plugin</artifactId>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.central</groupId>
+        <groupId>io.github.mavenplugins</groupId>
         <artifactId>central-publishing-maven-plugin</artifactId>
       </plugin>
     </plugins>
@@ -192,17 +192,4 @@
     <developerConnection>scm:git:ssh://github.com/dont-code/common-quarkus-mongo.git</developerConnection>
     <url>https://github.com/dont-code/common-quarkus-mongo/tree/main/java</url>
   </scm>
-  <repositories>
-    <repository>
-      <name>Central Portal Snapshots</name>
-      <id>central-portal-snapshots</id>
-      <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 </project>
